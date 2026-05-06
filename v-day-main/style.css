@@ -1,0 +1,272 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* Animated Gradient Background */
+    background: linear-gradient(-45deg, #ffb3c1, #ff8fa3, #ffc2d1, #ff9ebb);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Floating hearts background */
+.hearts-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.hearts-bg::before,
+.hearts-bg::after,
+.hearts-bg .heart-layer-3 {
+    content: '💕 💗 💖 💝 💓';
+    position: absolute;
+    font-size: 1.8rem;
+    opacity: 0.15;
+    animation: floatHearts 14s linear infinite;
+    white-space: nowrap;
+    top: 100%;
+    left: 5%;
+    filter: blur(1px);
+}
+
+.hearts-bg::after {
+    animation-delay: 4s;
+    left: 45%;
+    content: '💗 💖 💝 💕 💓';
+    font-size: 2.2rem;
+    filter: blur(2px);
+    opacity: 0.1;
+    animation: floatHearts 18s linear infinite;
+}
+
+.hearts-bg .heart-layer-3 {
+    animation-delay: 8s;
+    left: 80%;
+    content: '💝 💓 💗 💕 💖';
+    font-size: 1.4rem;
+    filter: blur(0px);
+    opacity: 0.2;
+    animation: floatHearts 12s linear infinite;
+}
+
+@keyframes floatHearts {
+    from { transform: translateY(0) rotate(0deg); opacity: 0.15; }
+    50% { opacity: 0.3; }
+    to { transform: translateY(-110vh) rotate(20deg); opacity: 0; }
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 50px 40px;
+    
+    /* Glassmorphism */
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(214, 51, 132, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    
+    /* Entrance Animation */
+    animation: slideUpFadeIn 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+@keyframes slideUpFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    font-size: 2.6rem;
+    color: #d63384;
+    font-weight: 900;
+    margin-bottom: 25px;
+    text-shadow: 0px 4px 12px rgba(214, 51, 132, 0.25);
+    animation: wiggle 3s ease-in-out infinite;
+    letter-spacing: -0.5px;
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(-1.5deg); }
+    50% { transform: rotate(1.5deg); }
+}
+
+.gif-container {
+    margin: 25px auto;
+    display: flex;
+    justify-content: center;
+}
+
+#cat-gif {
+    width: 220px;
+    height: 220px;
+    object-fit: contain;
+    /* Soft glowing drop shadow */
+    filter: drop-shadow(0 12px 24px rgba(214, 51, 132, 0.25));
+    transition: opacity 0.3s ease;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+    flex-wrap: wrap;
+}
+
+#yes-btn {
+    background: linear-gradient(135deg, #ff4d6d, #ff0a54);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.6rem;
+    font-weight: 900;
+    font-family: 'Nunito', sans-serif;
+    padding: 18px 45px;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s;
+    box-shadow: 0 8px 24px rgba(255, 10, 84, 0.4);
+    letter-spacing: 1px;
+    animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(255, 10, 84, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(255, 10, 84, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 10, 84, 0); }
+}
+
+#yes-btn:hover {
+    transform: scale(1.08) translateY(-3px);
+    box-shadow: 0 12px 28px rgba(255, 10, 84, 0.5);
+}
+
+#yes-btn:active {
+    transform: scale(0.95);
+}
+
+#no-btn {
+    background: rgba(255, 255, 255, 0.7);
+    color: #ff0a54;
+    border: 2px solid transparent;
+    border-radius: 16px;
+    font-size: 1rem;
+    font-weight: 800;
+    font-family: 'Nunito', sans-serif;
+    padding: 12px 28px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(4px);
+}
+
+#no-btn:hover {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 10, 84, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+
+#tease-toast {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: white;
+    background: rgba(214, 51, 132, 0.85);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 700;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    min-height: 1.5rem;
+    display: inline-block;
+    box-shadow: 0 4px 12px rgba(214, 51, 132, 0.2);
+    backdrop-filter: blur(4px);
+}
+
+#tease-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Music toggle button */
+#music-toggle {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 24px rgba(214, 51, 132, 0.15);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#music-toggle:hover {
+    transform: scale(1.15) rotate(5deg);
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 12px 28px rgba(214, 51, 132, 0.25);
+}
+
+/* Yes page specific */
+.yes-container h1.yes-title {
+    font-size: 3rem;
+    animation: bounceTitle 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) infinite alternate;
+}
+
+@keyframes bounceTitle {
+    from { transform: translateY(0) rotate(-2deg); }
+    to { transform: translateY(-15px) rotate(2deg); }
+}
+
+.yes-message {
+    font-size: 1.5rem;
+    color: #d63384;
+    font-weight: 800;
+    margin-top: 25px;
+    animation: fadeInSlideUp 1s ease 0.5s both;
+}
+
+@keyframes fadeInSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.yes-container #cat-gif {
+    width: 280px;
+    height: 280px;
+}
